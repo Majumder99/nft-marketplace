@@ -2,33 +2,31 @@
 pragma solidity ^0.8.9;
 
 // Uncomment this line to use console.log
-// import "hardhat/console.sol";
+import "hardhat/console.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-contract NFTMarketplace {
-    uint public unlockTime;
-    address payable public owner;
 
-    event Withdrawal(uint amount, uint when);
+contract NFTMarketplace is ERC721URIStorage{
+    address payable owner;
 
-    constructor(uint _unlockTime) payable {
-        require(
-            block.timestamp < _unlockTime,
-            "Unlock time should be in the future"
-        );
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenId;
+    Counters.Counter private _itemsSold;
 
-        unlockTime = _unlockTime;
+    uint256 listPrice = 0.01 ether;
+
+    constructor() ERC721("Sourav", "SM"){
         owner = payable(msg.sender);
     }
 
-    function withdraw() public {
-        // Uncomment this line, and the import of "hardhat/console.sol", to print a log in your terminal
-        // console.log("Unlock time is %o and block timestamp is %o", unlockTime, block.timestamp);
-
-        require(block.timestamp >= unlockTime, "You can't withdraw yet");
-        require(msg.sender == owner, "You aren't the owner");
-
-        emit Withdrawal(address(this).balance, block.timestamp);
-
-        owner.transfer(address(this).balance);
+    struct ListsToken{
+        uint256 tokenId;
+        address payable owner;
+        address payable seller;
+        uint256 price;
+        bool currentlyListed;
     }
+    
 }
