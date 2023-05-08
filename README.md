@@ -1,13 +1,6 @@
-# Sample Hardhat Project
-
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
-
-Try running some of the following tasks:
-
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
-```
+<h1>NFT marketplace</h1>
+<h2>Pinata endpoint isn't working properly</h2>
+<p>
+  Click <a href="https://www.youtube.com/watch?v=y6JfVdcJh1k&list=PLMj8NvODurfEYLsuiClgikZBGDfhwdcXF&index=7">here</a> for the
+  resource.
+</p>
